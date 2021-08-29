@@ -115,5 +115,42 @@ namespace EmployeePayrollServices_ADO.NET
                 this.connection.Close();
             }
         }
+        public int getEmployeeDataWithGivenRange()
+        {
+            try
+            {
+                int count = 0;
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.connection)
+                {
+                    string query = @"select count(name) from employee_payroll where start between cast('2015-01-01' as date) and CAST('2019-12-12' as date)";
+                    SqlCommand cmd = new SqlCommand(query, this.connection);
+                    this.connection.Open();
+                    SqlDataReader sqlDataReader = cmd.ExecuteReader();
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            count = sqlDataReader.GetInt32(0);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Data Found");
+                    }
+                    sqlDataReader.Close();
+                    this.connection.Close();
+                    return count;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
     }
 }

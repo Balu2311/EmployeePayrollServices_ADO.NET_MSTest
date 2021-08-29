@@ -33,5 +33,14 @@ namespace EmployeePayrollTestCases
             double expect = emprepo.UpdateEmployee();
             Assert.AreEqual(result, expect);
         }
+        // retrive employee who joined in perticular date range.
+        [TestMethod]
+        public void GivenEmployeeNames_WhenUpdateSalary_ThenReturnExpectedSalary()
+        {
+            EmployeeRepo emprepo = new EmployeeRepo();
+            int count = emprepo.getEmployeeDataWithGivenRange();
+            int expected = 5;
+            Assert.AreEqual(expected, count);
+        }
     }
 }
