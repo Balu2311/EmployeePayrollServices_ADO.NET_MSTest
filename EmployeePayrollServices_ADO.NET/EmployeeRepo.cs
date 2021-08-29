@@ -79,5 +79,41 @@ namespace EmployeePayrollServices_ADO.NET
                 throw new Exception(e.Message);
             }
         }
+        public double UpdateEmployee()
+        {
+            EmployeeModel employeeModel = new EmployeeModel();
+            try
+            {
+                using (this.connection)
+                {
+                    string query = @"update employee_payroll set basic_pay=3000000 where name='Reddy';";
+                    SqlCommand cmd = new SqlCommand(query, this.connection);
+                    this.connection.Open();
+                    var result = cmd.ExecuteNonQuery();
+                    if (result == 1)
+                    {
+                        query = @"Select basic_pay from employee_payroll where name='Reddy';";
+                        cmd = new SqlCommand(query, connection);
+                        object res = cmd.ExecuteScalar();
+                        connection.Close();
+                        employeeModel.BasicPay = (double)(decimal)res;
+                        return (employeeModel.BasicPay);
+                    }
+                    else
+                    {
+                        connection.Close();
+                        return 0;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
     }
 }

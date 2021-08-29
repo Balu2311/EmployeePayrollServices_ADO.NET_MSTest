@@ -24,5 +24,14 @@ namespace EmployeePayrollTestCases
             int result = 5;
             Assert.AreEqual(result, expect);
         }
+        // Givens the employee name when update salary then return employee payroll from data base.
+        [TestMethod]
+        public void GivenEmployeeName_WhenUpdateSalary_ThenReturnExpectedSalary()
+        {
+            int result = 3000000;
+            EmployeeRepo emprepo = new EmployeeRepo();
+            double expect = emprepo.UpdateEmployee();
+            Assert.AreEqual(result, expect);
+        }
     }
 }
