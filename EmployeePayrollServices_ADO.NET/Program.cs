@@ -11,7 +11,12 @@ namespace EmployeePayrollServices_ADO.NET
             //Console.WriteLine(emprepo.EstablishConnection());
             //Console.WriteLine(emprepo.GetAllRecords());
             //Console.WriteLine(emprepo.UpdateEmployee());
-            Console.WriteLine(emprepo.getEmployeeDataWithGivenRange());
+            //Console.WriteLine(emprepo.getEmployeeDataWithGivenRange());
+            Console.WriteLine(emprepo.getAggrigateSumSalary());
+            //Console.WriteLine(emprepo.getAvragSalary());
+            //Console.WriteLine(emprepo.getMinSalary());
+            //Console.WriteLine(emprepo.getMaxSalary());
+            //Console.WriteLine(emprepo.getCountSalary());
         }
     }
 }

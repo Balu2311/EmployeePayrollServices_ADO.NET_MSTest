@@ -42,5 +42,51 @@ namespace EmployeePayrollTestCases
             int expected = 5;
             Assert.AreEqual(expected, count);
         }
+
+        //Givens the employee names when update salary then return expected sum salary.
+        [TestMethod]
+        public void GivenEmployeeNames_WhenUpdateSalary_ThenReturnExpectedSumSalary()
+        {
+            int expected = 200000;
+            EmployeeRepo emprepo = new EmployeeRepo();
+            int sum = emprepo.getAggrigateSumSalary();
+            Assert.AreEqual(expected, sum);
+        }
+        // Givens the employee names when average salary then return expected average salary.
+        [TestMethod]
+        public void GivenEmployeeNames_WhenAvgSalary_ThenReturnExpectedAvgSalary()
+        {
+            int expected = 200000;
+            EmployeeRepo emprepo = new EmployeeRepo();
+            int avg = emprepo.getAvragSalary();
+            Assert.AreEqual(expected, avg);
+        }
+        // Givens the employee names when minimum salary then return expected minimum salary.
+        [TestMethod]
+        public void GivenEmployeeNames_WhenMinSalary_ThenReturnExpectedMinSalary()
+        {
+            int expected = 200000;
+            EmployeeRepo emprepo = new EmployeeRepo();
+            int min = emprepo.getMinSalary();
+            Assert.AreEqual(expected, min);
+        }
+        // Givens the employee names when maximum then return expected maximum salary.
+        [TestMethod]
+        public void GivenEmployeeNames_WhenMax_ThenReturnExpectedMaxSalary()
+        {
+            int expected = 200000;
+            EmployeeRepo emprepo = new EmployeeRepo();
+            int max = emprepo.getMaxSalary();
+            Assert.AreEqual(expected, max);
+        }
+        // Givens the employee names when count by salary then return expected count by salary.
+        [TestMethod]
+        public void GivenEmployeeNames_WhenCountBySalary_ThenReturnExpectedCountBySalary()
+        {
+            int expected = 1;
+            EmployeeRepo emprepo = new EmployeeRepo();
+            int count = emprepo.getCountSalary();
+            Assert.AreEqual(expected, count);
+        }
     }
 }
