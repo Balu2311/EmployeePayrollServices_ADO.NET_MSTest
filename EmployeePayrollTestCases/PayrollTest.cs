@@ -1,5 +1,6 @@
 using EmployeePayrollServices_ADO.NET;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace EmployeePayrollTestCases
 {
@@ -87,6 +88,31 @@ namespace EmployeePayrollTestCases
             EmployeeRepo emprepo = new EmployeeRepo();
             int count = emprepo.getCountSalary();
             Assert.AreEqual(expected, count);
+        }
+        
+        // Givens the employee names when count by salary then return expected count by salary.
+        [TestMethod]
+        public void GivenEmployeeNamess_WhenCountBySalary_ThenReturnExpectedCountBySalary()
+        {
+            bool expected = true;
+            EmployeeRepo employeePayrollRepo = new EmployeeRepo();
+            EmployeeModel model = new EmployeeModel
+            {
+                //EmployeeID = 108,
+                EmployeeName = "BNReddy",
+                BasicPay = 450000,
+                start_date = new DateTime(2016, 07, 04),
+                gendre = 'M',
+                PhoneNumber = "6523449870",
+                Address = "golai",
+                Department = "Finance",
+                Deductions = 6600.00,
+                TaxablePay = 5500,
+                NetPay = 4000,
+                IncomeTax = 5000,
+            };
+            bool result = employeePayrollRepo.InsertEmployee(model);
+            Assert.AreEqual(expected, result);
         }
     }
 }

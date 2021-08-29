@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -55,13 +56,13 @@ namespace EmployeePayrollServices_ADO.NET
                             employeeModel.PhoneNumber = dr.GetString(5);
                             employeeModel.Address = dr.GetString(6);
                             employeeModel.Department = dr.GetString(7);
-                            employeeModel.Deduction = dr.GetDouble(8);
+                            employeeModel.Deductions = dr.GetDouble(8);
                             employeeModel.TaxablePay = (float)dr.GetSqlSingle(9);
                             //employeeModel.NetPay = (float)dr.GetSqlSingle(10);
                             employeeModel.IncomeTax = (float)dr.GetSqlSingle(11);
 
                             Console.WriteLine(employeeModel.EmployeeID + " , " + employeeModel.EmployeeName + " , " + employeeModel.Address + " , " + employeeModel.gendre + " , " + employeeModel.Department + " , " + employeeModel.NetPay + " , " + employeeModel.start_date + " , " + employeeModel.PhoneNumber
-                                                + " , " + employeeModel.BasicPay + " , " + employeeModel.Address + " , " + employeeModel.Deduction + " , " + employeeModel.TaxablePay + " , " + employeeModel.IncomeTax);
+                                                + " , " + employeeModel.BasicPay + " , " + employeeModel.Address + " , " + employeeModel.Deductions + " , " + employeeModel.TaxablePay + " , " + employeeModel.IncomeTax);
                         }
                     }
                     else
@@ -321,6 +322,45 @@ namespace EmployeePayrollServices_ADO.NET
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+        public bool InsertEmployee(EmployeeModel empModel)
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    SqlCommand command = new SqlCommand("payrollProcedure", this.connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    //command.Parameters.AddWithValue("@EmployeeID", empModel.EmployeeID);
+                    command.Parameters.AddWithValue("@EmployeeName", empModel.EmployeeName);
+                    command.Parameters.AddWithValue("@BasicPay", empModel.BasicPay);
+                    command.Parameters.AddWithValue("@StartDate", empModel.start_date);
+                    command.Parameters.AddWithValue("@Gender", empModel.gendre);
+                    command.Parameters.AddWithValue("@PhoneNumber", empModel.PhoneNumber);
+                    command.Parameters.AddWithValue("@Address", empModel.Address);
+                    command.Parameters.AddWithValue("@Department", empModel.Department);
+                    command.Parameters.AddWithValue("@Deductions", empModel.Deductions);
+                    command.Parameters.AddWithValue("@TaxablePay", empModel.TaxablePay);
+                    command.Parameters.AddWithValue("@NetPay", empModel.NetPay);
+                    command.Parameters.AddWithValue("@IncomeTax", empModel.IncomeTax);
+                    this.connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    this.connection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
             }
         }
     }
