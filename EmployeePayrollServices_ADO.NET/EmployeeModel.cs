@@ -17,6 +17,6 @@ namespace EmployeePayrollServices_ADO.NET
         public double Deduction { get; set; }
         public Single TaxablePay { get; set; }
         public Single NetPay { get; set; }
-        public double Tax { get; set; }
+        public Single IncomeTax { get; set; }
     }
 }

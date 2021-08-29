@@ -6,9 +6,10 @@ namespace EmployeePayrollServices_ADO.NET
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("***Welcome_To_Employee_Payroll_Service_MSTEST***");
+            Console.WriteLine("Welcome_To_Employee_Payroll_Service_MSTEST");
             EmployeeRepo emprepo = new EmployeeRepo();
             Console.WriteLine(emprepo.EstablishConnection());
+            Console.WriteLine(emprepo.GetAllRecords());
         }
     }
 }
