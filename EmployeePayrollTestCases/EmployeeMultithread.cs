@@ -58,5 +58,30 @@ namespace EmployeePayrollTestCases
             DateTime endTimeWithThread = DateTime.Now;
             Console.WriteLine("Execution_Time_Using_Thread : " + (startTimeWithThread - endTimeWithThread));
         }
+        // Add Employee Details in both emplyee and payroll and caluculate execution time
+        [TestMethod]
+        public void GivenQuery_WhenInsert_ShouldRecordExecutionTime()
+        {
+            EmployeeRepo payrollRepo = new EmployeeRepo();
+            EmployeeModel employeeModel = new EmployeeModel
+            {
+                EmployeeID = 14,
+                EmployeeName = "PoojaReddy",
+                BasicPay = 650000,
+                StartDate = new DateTime(2019, 01, 01),
+                Gendre = 'F',
+                PhoneNumber = "6781234590",
+                Department = "HR",
+                Address = "BNG",
+                Deductions = 6000,
+                TaxablePay = 3500,
+                NetPay = 56000,
+                IncomeTax = 1200
+            };
+            DateTime startTimes = DateTime.Now;
+            payrollRepo.addEmployeeToPayroll(employeeModel);
+            DateTime endTimes = DateTime.Now;
+            Console.WriteLine("Execution_Time_without_Thread_DB : " + (endTimes - startTimes));
+        }
     }
 }
