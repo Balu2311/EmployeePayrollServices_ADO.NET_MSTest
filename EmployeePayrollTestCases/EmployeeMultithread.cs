@@ -83,5 +83,25 @@ namespace EmployeePayrollTestCases
             DateTime endTimes = DateTime.Now;
             Console.WriteLine("Execution_Time_without_Thread_DB : " + (endTimes - startTimes));
         }
+        //Upadate salary in database and calculate execution Time
+        [TestMethod]
+        public void givenListAndDbss_WhenInsertInPayrollTable_ThenCalculateExacutionTimes()
+        {
+
+            EmployeePayrollOperation employeePayroll = new EmployeePayrollOperation();
+            EmployeeRepo employeePayrollRepo = new EmployeeRepo();
+            EmployeeModel employeeModel = new EmployeeModel
+            {
+                EmployeeName = "Balu",
+                BasicPay = 777777
+            };
+
+            DateTime startTimesForDb = DateTime.Now;
+            employeePayrollRepo.updateEmployeeSalary(employeeModel);
+            DateTime endTimesForDb = DateTime.Now;
+            Console.WriteLine("Execution_Time_For_Updating_Salary_IN_DB : " + (startTimesForDb - endTimesForDb));
+
+
+        }
     }
 }
