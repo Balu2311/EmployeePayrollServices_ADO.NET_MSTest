@@ -37,7 +37,7 @@ namespace EmployeePayrollServices_ADO.NET
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
-                    string query = @"select * from Employee_Payroll";
+                    string query = @"select * from Employee_payroll";
 
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
@@ -50,18 +50,18 @@ namespace EmployeePayrollServices_ADO.NET
                             count++;
                             employeeModel.EmployeeID = dr.GetInt32(0);
                             employeeModel.EmployeeName = dr.GetString(1);
-                            employeeModel.BasicPay = Convert.ToDouble(dr.GetDecimal(2));
-                            employeeModel.start_date = dr.GetDateTime(3);
-                            employeeModel.gendre = Convert.ToChar(dr.GetString(4));
                             employeeModel.PhoneNumber = dr.GetString(5);
                             employeeModel.Address = dr.GetString(6);
                             employeeModel.Department = dr.GetString(7);
+                            employeeModel.Gendre = Convert.ToChar(dr.GetString(4));
+                            employeeModel.BasicPay = Convert.ToDouble(dr.GetDecimal(2));
                             employeeModel.Deductions = dr.GetDouble(8);
                             employeeModel.TaxablePay = (float)dr.GetSqlSingle(9);
-                            //employeeModel.NetPay = (float)dr.GetSqlSingle(10);
+                            employeeModel.NetPay = (float)dr.GetSqlSingle(10);
                             employeeModel.IncomeTax = (float)dr.GetSqlSingle(11);
+                            employeeModel.StartDate = dr.GetDateTime(3);
 
-                            Console.WriteLine(employeeModel.EmployeeID + " , " + employeeModel.EmployeeName + " , " + employeeModel.Address + " , " + employeeModel.gendre + " , " + employeeModel.Department + " , " + employeeModel.NetPay + " , " + employeeModel.start_date + " , " + employeeModel.PhoneNumber
+                            Console.WriteLine(employeeModel.EmployeeID + " , " + employeeModel.EmployeeName + " , " + employeeModel.Address + " , " + employeeModel.Gendre + " , " + employeeModel.Department + " , " + employeeModel.NetPay + " , " + employeeModel.StartDate + " , " + employeeModel.PhoneNumber
                                                 + " , " + employeeModel.BasicPay + " , " + employeeModel.Address + " , " + employeeModel.Deductions + " , " + employeeModel.TaxablePay + " , " + employeeModel.IncomeTax);
                         }
                     }
@@ -87,13 +87,13 @@ namespace EmployeePayrollServices_ADO.NET
             {
                 using (this.connection)
                 {
-                    string query = @"update employee_payroll set basic_pay=3000000 where name='Reddy';";
+                    string query = @"update Employee_payroll set BasicPay=3000000 where EmployeeName='Reddy';";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     var result = cmd.ExecuteNonQuery();
                     if (result == 1)
                     {
-                        query = @"Select basic_pay from employee_payroll where name='Reddy';";
+                        query = @"Select BasicPay from Employee_payroll where EmployeeName='Reddy';";
                         cmd = new SqlCommand(query, connection);
                         object res = cmd.ExecuteScalar();
                         connection.Close();
@@ -124,7 +124,7 @@ namespace EmployeePayrollServices_ADO.NET
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
-                    string query = @"select count(name) from employee_payroll where start between cast('2015-01-01' as date) and CAST('2019-12-12' as date)";
+                    string query = @"select count(EmployeeName) from Employee_payroll where StartDate between cast('2015-01-01' as date) and CAST('2019-12-12' as date)";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader sqlDataReader = cmd.ExecuteReader();
@@ -161,7 +161,7 @@ namespace EmployeePayrollServices_ADO.NET
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
-                    string query = @"select sum(basic_pay) from  employee_payroll GROUP BY gender;";
+                    string query = @"select sum(BasicPay) from  Employee_payroll GROUP BY Gender;";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader sqlDataReader = cmd.ExecuteReader();
@@ -196,7 +196,7 @@ namespace EmployeePayrollServices_ADO.NET
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
-                    string query = @"select avg(basic_pay) from  employee_payroll GROUP BY gender;";
+                    string query = @"select avg(BasicPay) from  Employee_payroll GROUP BY Gender;";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader sqlDataReader = cmd.ExecuteReader();
@@ -230,7 +230,7 @@ namespace EmployeePayrollServices_ADO.NET
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
-                    string query = @"select min(basic_pay) from  employee_payroll GROUP BY gender;";
+                    string query = @"select min(BasicPay) from  Employee_payroll GROUP BY Gender;";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader sqlDataReader = cmd.ExecuteReader();
@@ -264,7 +264,7 @@ namespace EmployeePayrollServices_ADO.NET
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
-                    string query = @"select max(basic_pay) from  employee_payroll GROUP BY gender;";
+                    string query = @"select max(BasicPay) from  Employee_payroll GROUP BY Gender;";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader sqlDataReader = cmd.ExecuteReader();
@@ -299,7 +299,7 @@ namespace EmployeePayrollServices_ADO.NET
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
-                    string query = @"select count(basic_pay) from  employee_payroll GROUP BY gender;";
+                    string query = @"select count(BasicPay) from  Employee_payroll GROUP BY Gender;";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader sqlDataReader = cmd.ExecuteReader();
@@ -335,8 +335,8 @@ namespace EmployeePayrollServices_ADO.NET
                     //command.Parameters.AddWithValue("@EmployeeID", empModel.EmployeeID);
                     command.Parameters.AddWithValue("@EmployeeName", empModel.EmployeeName);
                     command.Parameters.AddWithValue("@BasicPay", empModel.BasicPay);
-                    command.Parameters.AddWithValue("@StartDate", empModel.start_date);
-                    command.Parameters.AddWithValue("@Gender", empModel.gendre);
+                    command.Parameters.AddWithValue("@StartDate", empModel.StartDate);
+                    command.Parameters.AddWithValue("@Gender", empModel.Gendre);
                     command.Parameters.AddWithValue("@PhoneNumber", empModel.PhoneNumber);
                     command.Parameters.AddWithValue("@Address", empModel.Address);
                     command.Parameters.AddWithValue("@Department", empModel.Department);
@@ -372,8 +372,8 @@ namespace EmployeePayrollServices_ADO.NET
                 //command.Parameters.AddWithValue("@EmployeeID", empModel.EmployeeID);
                 command.Parameters.AddWithValue("@EmployeeName", empModel.EmployeeName);
                 command.Parameters.AddWithValue("@BasicPay", empModel.BasicPay);
-                command.Parameters.AddWithValue("@StartDate", empModel.start_date);
-                command.Parameters.AddWithValue("@Gender", empModel.gendre);
+                command.Parameters.AddWithValue("@StartDate", empModel.StartDate);
+                command.Parameters.AddWithValue("@Gender", empModel.Gendre);
                 command.Parameters.AddWithValue("@PhoneNumber", empModel.PhoneNumber);
                 command.Parameters.AddWithValue("@Address", empModel.Address);
                 command.Parameters.AddWithValue("@Department", empModel.Department);
@@ -415,8 +415,6 @@ namespace EmployeePayrollServices_ADO.NET
             {
                 this.connection.Close();
             }
-
         }
-        
     }
 }

@@ -9,8 +9,8 @@ namespace EmployeePayrollServices_ADO.NET
         public int EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public double BasicPay { get; set; }
-        public DateTime start_date { get; set; }
-        public char gendre { get; set; }
+        public DateTime StartDate { get; set; }
+        public char Gendre { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string Department { get; set; }
