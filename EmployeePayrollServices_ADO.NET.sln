@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeePayrollServices_ADO.NET", "EmployeePayrollServices_ADO.NET\EmployeePayrollServices_ADO.NET.csproj", "{5E04A93A-5C06-4AC8-AC42-D9349BDD7055}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeePayrollServices_ADO.NET", "EmployeePayrollServices_ADO.NET\EmployeePayrollServices_ADO.NET.csproj", "{5E04A93A-5C06-4AC8-AC42-D9349BDD7055}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeePayrollTestCases", "EmployeePayrollTestCases\EmployeePayrollTestCases.csproj", "{23BF296D-F8B3-4469-B25D-68A3357357E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeePayrollTestCases", "EmployeePayrollTestCases\EmployeePayrollTestCases.csproj", "{23BF296D-F8B3-4469-B25D-68A3357357E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharpTestCases", "RestSharpTestCases\RestSharpTestCases.csproj", "{6C53AC16-F55E-4B27-BE08-69BF8C48C370}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{23BF296D-F8B3-4469-B25D-68A3357357E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23BF296D-F8B3-4469-B25D-68A3357357E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23BF296D-F8B3-4469-B25D-68A3357357E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C53AC16-F55E-4B27-BE08-69BF8C48C370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C53AC16-F55E-4B27-BE08-69BF8C48C370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C53AC16-F55E-4B27-BE08-69BF8C48C370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C53AC16-F55E-4B27-BE08-69BF8C48C370}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
