@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Net;
 
@@ -90,6 +91,22 @@ namespace RestSharpTestCases
             Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
             List<Employee> dataResorce = JsonConvert.DeserializeObject<List<Employee>>(response.Content);
             Assert.AreEqual(12, dataResorce.Count);
+        }
+        // Update employee salary on employee json Server.
+        [TestMethod]
+        public void GivenEmployee_WhenUpdateSalary_ThenShouldReturnUpdatedEmployeeSalary()
+        {
+            RestRequest request = new RestRequest("/employee/106", Method.PUT);
+            JObject jObjectBody = new JObject();
+            jObjectBody.Add("name", "Mohan");
+            jObjectBody.Add("Salary", "70000");
+            request.AddParameter("application/json", jObjectBody, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+            Employee dataResorce = JsonConvert.DeserializeObject<Employee>(response.Content);
+            Assert.AreEqual("Mohin", dataResorce.name);
+            Assert.AreEqual("70000", dataResorce.salary);
+            Console.WriteLine(response.Content);
         }
     }
 }
