@@ -62,5 +62,34 @@ namespace RestSharpTestCases
             Assert.AreEqual("10000", dataResponse.salary);
 
         }
+        //adding multiple employee to the Json Server.
+        [TestMethod]
+        public void GivenMultipleEmployee_OnPost_ThenShouldReturnEmployeeList()
+        {
+            List<Employee> employeeList = new List<Employee>();
+            employeeList.Add(new Employee { name = "Vinaya", salary = "15000" });
+            employeeList.Add(new Employee { name = "Ajaya kumar", salary = "7000" });
+            employeeList.Add(new Employee { name = "Powan", salary = "9000" });
+            employeeList.Add(new Employee { name = "Swathi", salary = "12000" });
+            employeeList.ForEach(employeeData =>
+            {
+                RestRequest request = new RestRequest("/employee", Method.POST);
+                JObject jObjectBody = new JObject();
+                jObjectBody.Add("name", employeeData.name);
+                jObjectBody.Add("salary", employeeData.salary);
+                request.AddParameter("application/json", jObjectBody, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                Assert.AreEqual(response.StatusCode, HttpStatusCode.Created);
+                Employee dataResorce = JsonConvert.DeserializeObject<Employee>(response.Content);
+                Assert.AreEqual(employeeData.name, dataResorce.name);
+                Assert.AreEqual(employeeData.salary, dataResorce.salary);
+                System.Console.WriteLine(response.Content);
+            });
+
+            IRestResponse response = getEmployeeList();
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+            List<Employee> dataResorce = JsonConvert.DeserializeObject<List<Employee>>(response.Content);
+            Assert.AreEqual(12, dataResorce.Count);
+        }
     }
 }
