@@ -34,12 +34,12 @@ namespace EmployeePayrollTestCases
             EmployeeRepo payrollRepo = new EmployeeRepo();
             EmployeeModel employeeModel = new EmployeeModel
             {
-                EmployeeID = 13,
-                EmployeeName = "Mohin",
-                BasicPay = 450000,
-                StartDate = new DateTime(2021, 01, 01),
+                EmployeeID = 14,
+                EmployeeName = "Devendra",
+                BasicPay = 650000,
+                StartDate = new DateTime(2018, 01, 01),
                 Gendre = 'M',
-                PhoneNumber = "1234567890",
+                PhoneNumber = "6781234590",
                 Department = "IT",
                 Address = "Pune",
                 Deductions = 6000,
