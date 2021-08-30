@@ -51,6 +51,11 @@ namespace EmployeePayrollTestCases
             payrollRepo.addEmployeeToPayroll(employeeModel);
             DateTime endTimes = DateTime.Now;
             Console.WriteLine("Execution_Time_without_Thread : " + (endTimes - startTimes));
+            //UC2_Using_Thread
+            DateTime startTimeWithThread = DateTime.Now;
+            employeePayroll.AddEmployeeToPayroll(modelList);
+            DateTime endTimeWithThread = DateTime.Now;
+            Console.WriteLine("Execution_Time_Using_Thread : " + (startTimeWithThread - endTimeWithThread));
         }
     }
 }
